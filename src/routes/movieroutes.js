@@ -17,15 +17,15 @@ app.get('/movies',async (request,response,next)=>{
     }
 })
 
-app.get('/movies/:Id',async (request,response,next)=>{
-    let movieid=request.params.Id;
+app.get('/movies/:id',async (request,response,next)=>{
+    let movieid=request.params.id;
     try{
         let res=await getmovie.getMovie(movieid);
         console.log("Fetched the movie with id "+movieid);
         response.json(res);
     }
     catch(err){
-        console.error("Error fetching the movie "+moviename);
+        console.error("Error fetching the movie "+movieid);
     }
 })
 
@@ -41,13 +41,13 @@ app.post('/movies', async (request, response, next) => {
     }
 })
 
-app.put('/movies/:Name', async function (request, response, next) {
+app.put('/movies/:id', async function (request, response, next) {
     let movie = request.body;
     console.log(movie);
-    let moviename = request.params.Name;
+    let movieid = request.params.id;
     console.log(moviename);
     try {
-        let movie = await updatemovie.updateMovie(moviename, movie);
+        let movie = await updatemovie.updateMovie(movieid, movie);
         response.json(movie);
     }
     catch (err) {

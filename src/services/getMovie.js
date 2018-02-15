@@ -1,4 +1,5 @@
 const database = require('../config/database');
+let ObjectId = require('mongodb').ObjectID
 let db;
 
 async function connectdb() {
@@ -14,7 +15,7 @@ connectdb();
 
 function getMovie(movieid) {
     return new Promise((res, rej) => {
-        db.collection('movies').findOne({ Id:movieid }, (err, movie) => {
+        db.collection('movies').findOne({ _id: ObjectId(movieid) }, (err, movie) => {
             if (err) {
                 console.error(err);
             }
